@@ -1,0 +1,73 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Add item</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+    <form>
+        <div class="mb-3">
+            <label for="titleInput" class="form-label">Title</label>
+            <input 
+                type="text"
+                class="form-control"
+                id="titleInput"
+                [(ngModel)]="item.title"
+                [ngModelOptions]="{standalone: true}"
+            >
+        </div>
+        <div class="mb-3">
+            <label for="authorInput" class="form-label">Author</label>
+            <input
+                class="form-control"
+                list="authors"
+                id="authorInput"
+                placeholder="Type to search..."
+                [(ngModel)]="item.author"
+                [ngModelOptions]="{standalone: true}"
+            >
+            <datalist id="authors">
+                <option *ngFor="let author of authors" value="author">
+            </datalist>
+        </div>
+        <div class="mb-3">
+            <label for="originalPublishDateInput" class="form-label">
+                Original Publish Year
+            </label>
+            <input
+                type="number"
+                class="form-control"
+                id="originalPublishDateInput"
+                [(ngModel)]="item.originalPublishDate"
+                [ngModelOptions]="{standalone: true}"
+            >
+        </div>
+        <div class="mb-3">
+            <label for="translatorInput" class="form-label">Translator</label>
+            <input
+                class="form-control"
+                list="translators"
+                id="translatorInput"
+                placeholder="Type to search..."
+                [(ngModel)]="item.translator"
+                [ngModelOptions]="{standalone: true}"
+            >
+            <datalist id="translators">
+                <option *ngFor="let translator of translators" value="translator">
+            </datalist>
+        </div>
+        <h5>Parts</h5>
+        <div *ngFor="let part of item.parts" class="mb-3">
+            <label for="partTitleInput" class="form-label">Volume {{part.number}}</label>
+            <input
+                type="text"
+                class="form-control"
+                id="partTitleInput"
+                [(ngModel)]="part.title"
+                [ngModelOptions]="{standalone: true}"
+            >
+        </div>
+        <button type="button" class="btn btn-outline-primary" (click)="addPart()">Add part</button>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close(item)">Save</button>
+</div>

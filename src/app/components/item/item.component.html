@@ -1,0 +1,31 @@
+<div class="item">
+    <span *ngIf="item.status === 'not started'" class="badge bg-light status-badge" style="color: gray;">{{item.status}}</span>
+    <span *ngIf="item.status === 'in progress'" class="badge bg-warning status-badge">{{item.status}}</span>
+    <span *ngIf="item.status === 'completed'" class="badge bg-info status-badge">{{item.status}}</span>
+    &nbsp;
+    <a href="" style="font-weight: 500;">{{item.title}}</a>
+    <span *ngIf="item.author">,
+        <span style="font-size: 10pt;">
+            <i style="color: gray;">by </i>
+            <i>{{item.author}}</i>
+        </span>
+    </span>
+    <div style="margin-left: 92px;">
+        <div *ngIf="item.originalPublishDate || item.translator" style="margin-bottom: -7px;">
+            <sup>
+                <span *ngIf="item.originalPublishDate"><i style="color: gray;">originally published in </i>{{item.originalPublishDate}}</span>
+                <br *ngIf="item.translator && item.originalPublishDate">
+                <span *ngIf="item.translator"><i style="color: gray;">translated by </i>{{item.translator}}</span>
+            </sup>
+        </div>
+        <div *ngIf="item.parts.length > 0" style="font-size: 10pt;">
+            <div *ngFor="let part of item.parts">
+                &bull;
+                <span *ngIf="part.status === 'not started'" class="badge bg-light status-badge" style="color: gray;">Volume {{part.number}}</span>
+                <span *ngIf="part.status === 'in progress'" class="badge bg-warning status-badge">Volume {{part.number}}</span>
+                <span *ngIf="part.status === 'completed'" class="badge bg-info status-badge">Volume {{part.number}}</span>
+                <span *ngIf="part.title">&nbsp;{{part.title}}</span>
+            </div>
+        </div>
+    </div>
+</div>
