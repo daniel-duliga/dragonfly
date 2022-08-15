@@ -11,14 +11,23 @@
         </span>
     </span>
     <div style="margin-left: 92px;">
-        <div *ngIf="item.originalPublishDate || item.translator" style="margin-bottom: -7px;">
-            <sup>
-                <span *ngIf="item.originalPublishDate"><i style="color: gray;">originally published in </i>{{item.originalPublishDate}}</span>
-                <br *ngIf="item.translator && item.originalPublishDate">
-                <span *ngIf="item.translator"><i style="color: gray;">translated by </i>{{item.translator}}</span>
-            </sup>
+        <div style="margin-bottom: -7px;">
+            <div class="small-text">
+                <div>
+                    <i style="color: gray;">originally published in </i>
+                    <span *ngIf="item.originalPublishDate">
+                        {{item.originalPublishDate}}
+                    </span>
+                    <span *ngIf="!item.originalPublishDate">
+                        ⚠️
+                    </span>
+                </div>
+                <div *ngIf="item.translator">
+                    <i style="color: gray;">translated by </i>{{item.translator}}
+                </div>
+            </div>
         </div>
-        <div *ngIf="item.parts.length > 0" style="font-size: 10pt;">
+        <div *ngIf="item.parts.length > 0" style="font-size: 9pt; margin-top: 7px;">
             <div *ngFor="let part of item.parts">
                 &bull;
                 <span *ngIf="part.status === 'not started'" class="badge bg-light status-badge" style="color: gray;">Volume {{part.number}}</span>
